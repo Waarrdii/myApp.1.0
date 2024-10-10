@@ -12,7 +12,7 @@ class Product extends Model
 
     protected $dates = ['deleted_at'];
 
-    public function brand(){
-        return $this -> belongsTo(Brand::class);
+    public function wherehouse(){
+        return $this -> belongsToMany(Warehouses::class, 'product_warehouse');
     }
 }
