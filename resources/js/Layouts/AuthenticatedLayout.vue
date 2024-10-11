@@ -8,6 +8,7 @@ import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
 import { Link } from '@inertiajs/vue3';
 
 const showingNavigationDropdown = ref(false);
+const logoUrl = ref('/images/logo.png');
 </script>
 
 <template>
@@ -23,9 +24,10 @@ const showingNavigationDropdown = ref(false);
                             <!-- Logo -->
                             <div class="flex shrink-0 items-center">
                                 <Link :href="route('dashboard')">
-                                    <ApplicationLogo
+                                    <!-- <ApplicationLogo
                                         class="block h-9 w-auto fill-current text-gray-800"
-                                    />
+                                    /> -->
+                                    <img :src="logoUrl" alt="Logo" class="h-20 w-auto" />
                                 </Link>
                             </div>
 
