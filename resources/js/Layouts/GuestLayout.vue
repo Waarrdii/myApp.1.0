@@ -1,6 +1,9 @@
 <script setup>
 import ApplicationLogo from '@/Components/ApplicationLogo.vue';
 import { Link } from '@inertiajs/vue3';
+import { ref } from 'vue';
+
+const logoUrl = ref('/images/logo.png');
 </script>
 
 <template>
@@ -9,7 +12,7 @@ import { Link } from '@inertiajs/vue3';
     >
         <div>
             <Link href="/">
-                <ApplicationLogo class="h-20 w-20 fill-current text-gray-500" />
+                <img :src="logoUrl" alt="Logo" class="h-20 w-auto" />
             </Link>
         </div>
 

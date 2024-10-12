@@ -14,7 +14,7 @@ class RolesAndPermissionsSeeder extends Seeder
      */
     public function run(): void
     {
-        $administratorRole = Role::create(['name' => 'administrator']);
+        $super_adminRole = Role::create(['name' => 'super_admin']);
         $warehouseRole = Role::create(['name' => 'warehouse_admin']);
 
 
@@ -24,7 +24,7 @@ class RolesAndPermissionsSeeder extends Seeder
         $deleteProductPermission = Permission::create(['name' => 'delete product']);
         $manageWarehousePermission = Permission::create(['name' => 'manage warehouse']);
 
-        $administratorRole->givePermissionTo(Permission::all());
+        $super_adminRole->givePermissionTo(Permission::all());
         $warehouseRole->givePermissionTo([
             $createProductPermission,
             $readProductPermission,
