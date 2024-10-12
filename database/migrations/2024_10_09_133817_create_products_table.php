@@ -19,22 +19,22 @@ return new class extends Migration
             $table->decimal('buying_price', 8, 2)->nullable();
             $table->decimal('selling_price', 8, 2)->nullable();
             $table->integer('quantity')->nullable();
-            $table->unsignedBigInterger('accounts_receivable')->nullable();
-            $table->unsignedBigInterger('sales_account')->nullable();
-            $table->unsignedBigInterger('inventory_account')->nullable();
-            $table->unsignedBigInterger('COGS_account')->nullable();
-            $table->unsignedBigInterger('sales_returns_account')->nullable();
-            $table->unsignedBigInterger('purchase_returns_account')->nullable();
+            $table->unsignedBigInteger('accounts_receivable')->nullable();
+            $table->unsignedBigInteger('sales_account')->nullable();
+            $table->unsignedBigInteger('inventory_account')->nullable();
+            $table->unsignedBigInteger('COGS_account')->nullable();
+            $table->unsignedBigInteger('sales_returns_account')->nullable();
+            $table->unsignedBigInteger('purchase_returns_account')->nullable();
             $table->timestamps();
             $table->softDeletes();
 
            
-            $table->foreign('accounts_receivable')->reference('id')->on('accounts')->onDelete('casade');
-            $table->foreign('sales_account')->reference('id')->on('accounts')->onDelete('casade');
-            $table->foreign('inventory_account')->reference('id')->on('accounts')->onDelete('casade');
-            $table->foreign('COGS_account')->reference('id')->on('accounts')->onDelete('casade');
-            $table->foreign('sales_returns_account')->reference('id')->on('accounts')->onDelete('casade');
-            $table->foreign('purchase_returns_account')->reference('id')->on('accounts')->onDelete('casade');
+            $table->foreign('accounts_receivable')->references ('id')->on('accounts')->onDelete('cascade');
+            $table->foreign('sales_account')->references ('id')->on('accounts')->onDelete('cascade');
+            $table->foreign('inventory_account')->references ('id')->on('accounts')->onDelete('cascade');
+            $table->foreign('COGS_account')->references ('id')->on('accounts')->onDelete('cascade');
+            $table->foreign('sales_returns_account')->references ('id')->on('accounts')->onDelete('cascade');
+            $table->foreign('purchase_returns_account')->references ('id')->on('accounts')->onDelete('cascade');
         });
     }
 
