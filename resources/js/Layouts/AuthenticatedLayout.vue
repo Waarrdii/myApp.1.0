@@ -15,7 +15,7 @@ const logoUrl = ref('/images/logo.png');
     <div>
         <div class="min-h-screen bg-gray-100">
             <nav
-                class="border-b border-gray-100 bg-white"
+                class="border-b border-gray-100 bg-white select-none"
             >
                 <!-- Primary Navigation Menu -->
                 <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -27,7 +27,7 @@ const logoUrl = ref('/images/logo.png');
                                     <!-- <ApplicationLogo
                                         class="block h-9 w-auto fill-current text-gray-800"
                                     /> -->
-                                    <img :src="logoUrl" alt="Logo" class="h-20 w-auto" />
+                                    <img :src="logoUrl" alt="Logo" class="h-20 w-auto select-none" />
                                 </Link>
                             </div>
 
@@ -183,7 +183,7 @@ const logoUrl = ref('/images/logo.png');
 
             <!-- Page Heading -->
             <header
-                class="bg-white shadow"
+                class="bg-white shadow select-none"
                 v-if="$slots.header"
             >
                 <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
