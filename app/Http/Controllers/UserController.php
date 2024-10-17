@@ -14,7 +14,9 @@ class UserController extends Controller
     public function index():Response
     {
         return Inertia::render('Admin/User/UserIndex',[
-            'users' => UserResource::collection(User::all())
+            // Menggunakan resolve untuk mendapatkan array langsung tanpa pembungkus 'data'
+          'users' => UserResource::collection(User::all())->resolve() 
+          
         ]);
     }
 }
