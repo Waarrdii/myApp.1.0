@@ -25,12 +25,16 @@ defineProps(['users']);
                         <TableData>{{ user.id }}</TableData>
                         <TableBodyHeader>{{ user.name }}</TableBodyHeader>
                         <TableData>{{ user.email }}</TableData>
-                        <TableData>{{ user.roles }}</TableData>
+                        <TableData>
+                            <ul>
+                                <li v-for="role in user.roles" :key="role.id">{{ role }}</li>
+                            </ul>
+                        </TableData>
                     </TableRow>
                         
                 </template>
             </Table>   
-                   <pre>{{ users }}</pre>
+                <!-- <pre>{{ users }}</pre> -->
         </div>
     </Dashboard>
 </template>
