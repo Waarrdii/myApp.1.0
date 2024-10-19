@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use Illuminate\Foundation\Application;
@@ -27,6 +28,7 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware(['auth', 'role:super_admin'])->group(function(){
     Route::resource('/users', UserController::class);
+    Route::resource('/products', ProductController::class);
 });
 
 require __DIR__.'/auth.php';

@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\ProductResource;
 use App\Models\product;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class ProductController extends Controller
 {
@@ -12,7 +14,10 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        return Inertia::render('Product/ProductIndex',[
+            // Menggunakan resolve untuk mendapatkan array langsung tanpa pembungkus 'data'
+          'products' => ProductResource::collection(product::all())->resolve() 
+        ]);
     }
 
     /**
