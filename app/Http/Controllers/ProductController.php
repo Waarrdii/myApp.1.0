@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\ProductResource;
-use App\Models\product;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -16,7 +16,7 @@ class ProductController extends Controller
     {
         return Inertia::render('Product/ProductIndex',[
             // Menggunakan resolve untuk mendapatkan array langsung tanpa pembungkus 'data'
-          'products' => ProductResource::collection(product::all())->resolve() 
+          'products' => ProductResource::collection(Product::all())->resolve() 
         ]);
     }
 
