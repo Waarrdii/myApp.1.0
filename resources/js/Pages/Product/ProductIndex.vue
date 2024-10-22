@@ -5,6 +5,7 @@ import TableBodyHeader from '@/Components/TableBodyHeader.vue';
 import TableData from '@/Components/TableData.vue';
 import TableRow from '@/Components/TableRow.vue';
 import TableHeader from '@/Components/TableHeader.vue';
+import { Link } from '@inertiajs/vue3';
 
 defineProps(['products']);
 
@@ -22,6 +23,7 @@ defineProps(['products']);
                     <TableHeader>buying_price</TableHeader>
                     <TableHeader>selling_price</TableHeader>
                     <TableHeader>quantity</TableHeader>
+                    <TableHeader>options</TableHeader>
                 </template>
                 <template #default>
                     <TableRow v-for="item in products" :key="item.id">
@@ -32,6 +34,9 @@ defineProps(['products']);
                         <TableData>{{ item.buying_price }}</TableData>
                         <TableData>{{ item.selling_price }}</TableData>
                         <TableData>{{ item.quantity }}</TableData>
+                        <TableData>
+                            <!-- <Link :href="route('products.show')">edit</Link> -->
+                        </TableData>
                     </TableRow>
                         
                 </template>

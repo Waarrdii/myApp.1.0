@@ -42,6 +42,7 @@ class ProductController extends Controller
     public function show(product $product)
     {
         //
+        return Inertia::render('Product/ProductEdit');
     }
 
     /**
