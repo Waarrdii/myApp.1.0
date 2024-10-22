@@ -39,10 +39,10 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(product $product)
+    public function show($id)
     {
-        //
-        return Inertia::render('Product/ProductEdit');
+        $product = Product::findOrFail($id);
+        return Inertia::render('Product/ProductEdit', ['product' => $product]);
     }
 
     /**

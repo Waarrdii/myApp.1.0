@@ -35,7 +35,7 @@ defineProps(['products']);
                         <TableData>{{ item.selling_price }}</TableData>
                         <TableData>{{ item.quantity }}</TableData>
                         <TableData>
-                            <!-- <Link :href="route('products.show')">edit</Link> -->
+                            <Link :href="route('products.show', { id: item.id })">edit</Link>
                         </TableData>
                     </TableRow>
                         

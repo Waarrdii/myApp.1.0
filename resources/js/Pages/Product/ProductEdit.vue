@@ -5,20 +5,34 @@ import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
 import { Head, Link, useForm } from '@inertiajs/vue3';
+import { onMounted } from 'vue';
 
 const props = defineProps({
-    
-})
+  product: Object
+});
 
 const form = useForm({
     id: '',
     name: '',
-    descriptoin: '',
+    description: '',
     category: '',
     buying_price:'',
     selling_price:'',
     quantity:'',
 });
+
+onMounted(() => {
+  if (props.product) {
+    form.id = props.product.id;
+    form.name = props.product.name;
+    form.description = props.product.description;
+    form.category = props.product.category;
+    form.buying_price = props.product.buying_price;
+    form.selling_price = props.product.selling_price;
+    form.quantity = props.product.quantity;
+  }
+});
+
 
 const submit = () => {
     
@@ -62,18 +76,18 @@ const submit = () => {
             </div>
 
             <div class="mt-4">
-                <InputLabel for="descriptoin" value="Descriptoin" />
+                <InputLabel for="description" value="Description" />
 
                 <TextInput
-                    id="descriptoin"
+                    id="description"
                     type="text"
                     class="mt-1 block w-full"
-                    v-model="form.descriptoin"
+                    v-model="form.description"
                     required
-                    autocomplete="descriptoin"
+                    autocomplete="description"
                 />
 
-                <InputError class="mt-2" :message="form.errors.descriptoin" />
+                <InputError class="mt-2" :message="form.errors.description" />
             </div>
 
             <div class="mt-4">
