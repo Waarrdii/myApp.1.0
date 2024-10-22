@@ -13,7 +13,7 @@ defineProps(['products']);
 
 <template>
     <Dashboard>
-        <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+        <div class="relative overflow-x-auto shadow-md sm:rounded-lg select-text">
             <Table>
                 <template #header>
                     <TableHeader>ID</TableHeader>
