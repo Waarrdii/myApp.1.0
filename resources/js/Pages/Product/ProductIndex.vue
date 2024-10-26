@@ -28,7 +28,11 @@ defineProps(['products']);
                 <template #default>
                     <TableRow v-for="item in products" :key="item.id">
                         <TableData>{{ item.id }}</TableData>
-                        <TableBodyHeader>{{ item.name }}</TableBodyHeader>
+                        <TableBodyHeader>
+                            <Link :href="route('products.show', { id: item.id })">
+                                {{ item.name }}
+                            </Link>
+                            </TableBodyHeader>
                         <TableData>{{ item.description }}</TableData>
                         <TableData>{{ item.category }}</TableData>
                         <TableData>{{ item.buying_price }}</TableData>
