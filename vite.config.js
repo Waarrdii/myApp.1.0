@@ -17,4 +17,7 @@ export default defineConfig({
             },
         }),
     ],
+    build: {
+        sourcemap: true, // Tambahkan opsi sourcemap di sini
+    }
 });

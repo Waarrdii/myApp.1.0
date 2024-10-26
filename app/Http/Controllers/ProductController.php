@@ -25,7 +25,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Product/ProductEdit', ['product' => new Product()]);
     }
 
     /**
@@ -48,9 +48,10 @@ class ProductController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(product $product)
+    public function edit($id)
     {
-        //
+        $product = Product::findOrFail($id);
+        return Inertia::render('Product/ProductEdit', ['product' => $product]);
     }
 
     /**
