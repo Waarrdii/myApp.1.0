@@ -4,7 +4,7 @@ import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
-import { Head, useForm, usePage } from '@inertiajs/vue3';
+import { Head, useForm, router } from '@inertiajs/vue3';
 import { onMounted, computed } from 'vue';
 
 const props = defineProps({
@@ -35,7 +35,7 @@ onMounted(() => {
 
 
 const submit = () => {
-    
+    router.post(route('products.store'), form.value);
 };
 </script>
 
@@ -43,7 +43,7 @@ const submit = () => {
     <Dashboard>
         <Head title="Register" />
 
-        <form >
+        <form @submit.prevent="submit" >
             <div>
                 <InputLabel for="id" value="ID" />
 
@@ -181,7 +181,7 @@ const submit = () => {
                     :class="{ 'opacity-25': form.processing }"
                     :disabled="form.processing"
                 >
-                    Update
+                    Save
                 </PrimaryButton>
             </div>
         </form>
