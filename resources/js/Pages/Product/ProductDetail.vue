@@ -4,62 +4,43 @@ import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
-import { Head, useForm, router } from '@inertiajs/vue3';
-import { onMounted, computed } from 'vue';
+import NumberInput from '@/Components/NumberInput.vue';
+import { Head, useForm } from '@inertiajs/vue3';
+import { onMounted } from 'vue';
 
 const props = defineProps({
   product: Object
 });
 
 const form = useForm({
-    id: '',
     name: '',
     description: '',
     category: '',
-    buying_price:'',
-    selling_price:'',
-    quantity:'',
+    buying_price:0,
+    selling_price:0,
+    quantity:0,
 });
 
 onMounted(() => {
   if (props.product) {
-    form.id = props.product.id;
-    form.name = props.product.name;
-    form.description = props.product.description;
-    form.category = props.product.category;
-    form.buying_price = props.product.buying_price;
-    form.selling_price = props.product.selling_price;
-    form.quantity = props.product.quantity;
+    form.id = props.product?.id;
+    form.name = props.product?.name || '';
+    form.description = props.product?.description || '';
+    form.category = props.product?.category || '';
+    form.buying_price = props.product?.buying_price || 0;
+    form.selling_price = props.product?.selling_price || 0;
+    form.quantity = props.product?.quantity || 0;
   }
 });
 
 
-const submit = () => {
-    router.post(route('products.store'), form.value);
-};
 </script>
 
 <template>
     <Dashboard>
         <Head title="Register" />
 
-        <form @submit.prevent="submit" >
-            <div>
-                <InputLabel for="id" value="ID" />
-
-                <TextInput
-                    id="id"
-                    type="text"
-                    class="mt-1 block w-full"
-                    v-model="form.id"
-                    required
-                    autofocus
-                    autocomplete="id"
-                />
-
-                <InputError class="mt-2" :message="form.errors.id" />
-            </div>
-
+        <form @submit.prevent="form.post(route('products.store'))" >
             <div class="mt-4">
                 <InputLabel for="name" value="Name" />
 
@@ -117,7 +98,7 @@ const submit = () => {
                     value="buying_price"
                 />
 
-                <TextInput
+                <NumberInput
                     id="buying_price"
                     type="number"
                     class="mt-1 block w-full"
@@ -138,7 +119,7 @@ const submit = () => {
                     value="selling_price"
                 />
 
-                <TextInput
+                <NumberInput
                     id="selling_price"
                     type="number"
                     class="mt-1 block w-full"
@@ -159,7 +140,7 @@ const submit = () => {
                     value="quantity"
                 />
 
-                <TextInput
+                <NumberInput
                     id="quantity"
                     type="number"
                     class="mt-1 block w-full"
