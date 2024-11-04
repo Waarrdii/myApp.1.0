@@ -7,27 +7,27 @@ import TableRow from '@/Components/TableRow.vue';
 import TableHeader from '@/Components/TableHeader.vue';
 import { Link } from '@inertiajs/vue3';
 import Checkbox from '@/Components/Checkbox.vue';
-import { ref, computed  } from 'vue';
+import { ref, computed } from 'vue';
+import { useForm } from '@inertiajs/vue3';
+
 
 
 const props = defineProps({
-  products: Array
+    products: Array
 });
 
 const selectedProducts = ref([]);
+const form = useForm({});
 
 const isDisabled = computed(() => {
-  return selectedProducts.value.length === 0;
+    return selectedProducts.value.length === 0;
 });
 
-const submit = () => {
-  console.log(selectedProducts.value);
-};
-
 const deleteProduct = () => {
-    // Lakukan sesuatu dengan ID produk yang terpilih, misalnya kirim ke server
-    console.log(selectedProducts.value);
-    // Kirim ke server menggunakan AJAX atau form submission
+    Promise.all( selectedProducts.value.map(id => {
+         return form.delete(route('products.destroy', { id }), 
+         { preserveScroll: true });
+         }) ).then(() => { selectedProducts.value = []; });
 };
 
 </script>
@@ -41,9 +41,7 @@ const deleteProduct = () => {
             <Link :class="{
                 'pointer-events-none  opacity-50 bg-red-700 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600': isDisabled,
                 'focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900': !isDisabled
-                }" 
-                 @click="deleteProduct"
-                :href="route('products.index')">Delete</Link>
+            }" @click="deleteProduct" :href="route('products.index')">Delete</Link>
         </div>
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg select-text">
 
