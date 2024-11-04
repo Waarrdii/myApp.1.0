@@ -12,26 +12,15 @@ const props = defineProps({
 });
 
 const form = useForm({
-    id: '',
-    name: '',
-    description: '',
-    category: '',
-    buying_price:'',
-    selling_price:'',
-    quantity:'',
+    id: props.product?.id,
+    name: props.product?.name,
+    description: props.product?.description,
+    category: props.product?.category,
+    buying_price:props.product?.buying_price,
+    selling_price:props.product?.selling_price,
+    quantity:props.product?.quantity,
 });
 
-onMounted(() => {
-  if (props.product) {
-    form.id = props.product.id;
-    form.name = props.product.name;
-    form.description = props.product.description;
-    form.category = props.product.category;
-    form.buying_price = props.product.buying_price;
-    form.selling_price = props.product.selling_price;
-    form.quantity = props.product.quantity;
-  }
-});
 
 
 const submit = () => {
@@ -49,7 +38,7 @@ const submit = () => {
 
                 <TextInput
                     id="id"
-                    type="text"
+                    type="number"
                     class="mt-1 block w-full"
                     v-model="form.id"
                     required

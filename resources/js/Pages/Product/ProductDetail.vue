@@ -13,6 +13,7 @@ const props = defineProps({
 });
 
 const form = useForm({
+    id: '',
     name: '',
     description: '',
     category: '',
@@ -41,6 +42,26 @@ onMounted(() => {
         <Head title="Register" />
 
         <form @submit.prevent="form.post(route('products.store'))" >
+            <div class="mt-4">
+                <InputLabel
+                    for="id"
+                    value="ID"
+                />
+
+                <NumberInput
+                    id="id"
+                    type="number"
+                    class="mt-1 block w-full"
+                    v-model="form.id"
+                    required
+                    autocomplete="id"
+                />
+
+                <InputError
+                    class="mt-2"
+                    :message="form.errors.id"
+                />
+            </div>
             <div class="mt-4">
                 <InputLabel for="name" value="Name" />
 

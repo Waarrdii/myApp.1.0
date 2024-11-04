@@ -26,7 +26,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return Inertia::render('Product/ProductDetail', ['product' => new Product()]);
+        return Inertia::render('Product/ProductDetails', ['product' => new Product()]);
     }
 
     /**
@@ -44,7 +44,7 @@ class ProductController extends Controller
     public function show($id)
     {
         $product = Product::findOrFail($id);
-        return Inertia::render('Product/ProductDetail', ['product' => $product]);
+        return Inertia::render('Product/ProductDetails', ['product' => $product]);
     }
 
     /**
@@ -53,7 +53,7 @@ class ProductController extends Controller
     public function edit($id)
     {
         $product = Product::findOrFail($id);
-        return Inertia::render('Product/ProductEdit', ['product' => $product]);
+        return Inertia::render('Product/ProductDetails', ['product' => $product]);
     }
 
     /**
@@ -61,7 +61,8 @@ class ProductController extends Controller
      */
     public function update(Request $request, product $product)
     {
-        //
+        $product->update($request->all());
+        return redirect()->route('products.index')->with('success', 'Product updated successfully.');
     }
 
     /**
