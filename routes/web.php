@@ -29,6 +29,8 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['auth', 'role:super_admin'])->group(function(){
     Route::resource('/users', UserController::class);
     Route::resource('/products', ProductController::class);
+    Route::delete('/products/{id}', [ProductController::class, 'destroy'])->name('products.destroy');
+    Route::delete('/products', [ProductController::class, 'destroyMultiple'])->name('products.destroyMultiple');
 });
 
 require __DIR__.'/auth.php';

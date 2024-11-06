@@ -8,26 +8,27 @@ import TableHeader from '@/Components/TableHeader.vue';
 import { Link } from '@inertiajs/vue3';
 import Checkbox from '@/Components/Checkbox.vue';
 import { ref, computed } from 'vue';
-import { useForm } from '@inertiajs/vue3';
-
+import { useForm, usePage } from '@inertiajs/vue3';
+import axios from 'axios';
 
 
 const props = defineProps({
     products: Array
 });
 
-const selectedProducts = ref([]);
 const form = useForm({});
 
 const isDisabled = computed(() => {
-    return selectedProducts.value.length === 0;
+    return selectedIds.value.length === 0;
 });
 
-const deleteProduct = () => {
-    Promise.all( selectedProducts.value.map(id => {
-         return form.delete(route('products.destroy', { id }), 
-         { preserveScroll: true });
-         }) ).then(() => { selectedProducts.value = []; });
+
+const selectedIds = ref([]);
+const deleteProduct =  () => {
+    axios.delete(route('products.destroyMultiple'),  { 
+        data: { ids: selectedIds.value }
+    })
+    
 };
 
 </script>
@@ -70,7 +71,7 @@ const deleteProduct = () => {
                         <TableData class="text-end">{{ item.selling_price }}</TableData>
                         <TableData class="text-end">{{ item.quantity }}</TableData>
                         <TableData class="text-center">
-                            <Checkbox v-model:checked="selectedProducts" :value="item.id" />
+                            <Checkbox v-model:checked="selectedIds" :value="item.id" />
                         </TableData>
                     </TableRow>
 

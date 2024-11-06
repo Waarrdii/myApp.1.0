@@ -15,9 +15,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return Inertia::render('Product/ProductIndex',[
+        return Inertia::render('Product/ProductIndex', [
             // Menggunakan resolve untuk mendapatkan array langsung tanpa pembungkus 'data'
-          'products' => ProductResource::collection(Product::all())->resolve() 
+            'products' => ProductResource::collection(Product::all())->resolve()
         ]);
     }
 
@@ -68,10 +68,25 @@ class ProductController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id)
+    // public function destroy($id)
+    // {
+    //     $product = Product::findOrFail($id);
+    //     $product->delete();
+    //     return redirect()->route('products.index')->with('success', 'Product deleted successfully.');
+    // }
+    public function destroy(Request $request, $id)
     {
-        $product = Product::findOrFail($id); 
-        $product->delete();
-        return redirect()->route('products.index')->with('success', 'Product deleted successfully');
+        foreach ($request->ids as $id) {
+            $product = Product::findOrFail($id);
+            $product->delete(); // Atau gunakan soft deletes dengan $product->delete()
+        }
+    
+        return redirect()->route('products.index')->with('success', 'Products deleted successfully.');
+    }
+
+    public function destroyMultiple(Request $request)
+    {
+        Product::whereIn('id', $request->ids)->delete();
+        return redirect()->route('products.index')->with('success', 'Products deleted successfully.');
     }
 }
